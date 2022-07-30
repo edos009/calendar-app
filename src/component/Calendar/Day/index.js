@@ -1,25 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { format } from "date-fns";
+import { currentDate } from "../../../utils/date";
 import style from "./Day.module.css";
 
-const Day = ({ date }) => {
+const Day = () => {
   return (
     <div>
       <div className={style.calendar_current_dayWeek}>
-        {format(date, "EEEE")}
+        {format(currentDate, "EEEE")}
       </div>
-      <div className={style.calendar_current_day}>{format(date, "d")}</div>
+      <div className={style.calendar_current_day}>
+        {format(currentDate, "d")}
+      </div>
     </div>
   );
-};
-
-Day.defaultProps = {
-  date: new Date(),
-};
-
-Day.propTypes = {
-  date: PropTypes.object.isRequired,
 };
 
 export default Day;
