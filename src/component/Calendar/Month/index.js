@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { format, getDaysInMonth, startOfMonth } from "date-fns";
 import { nanoid } from "nanoid";
+import style from "./Month.module.css";
+import cx from "classnames";
 
 const DaysWeek = () => {
-  const titleDaysWeek = ["S", "M", "T", "W", "T", "F", "S"];
-  return titleDaysWeek.map((day, i) => <td key={i}>{day}</td>);
+  const titleDaysWeek = ["M", "T", "W", "T", "F", "S", "S"];
+  return titleDaysWeek.map((day, i) => (
+    <td className={cx(style.calendar_cell, style.calendar_dayWeek)} key={i}>
+      {day}
+    </td>
+  ));
 };
 
 const id = () => {
@@ -19,20 +25,36 @@ const Month = ({ date }) => {
 
   const getFullCountDaysOfMonth = () => {
     const daysOfMonth = [];
+
     for (let i = 1; i <= getDaysInMonth(date); i++) {
       daysOfMonth.push(
-        <td key={id()} className="calendar-day">
+        <td
+          className={cx(
+            style.calendar_day,
+            style.calendar_cell,
+            Number(format(date, "d")) !== i ? "" : style.calendar_current_day
+          )}
+          key={id()}
+        >
           {i}
         </td>
       );
     }
+
     return daysOfMonth;
   };
 
   const getEmptyCellsOfMonth = () => {
     const blank = [];
     for (let i = 0; i < firstDayOfMonth(); i++) {
-      blank.push(<td key={id()}>{""}</td>);
+      blank.push(
+        <td
+          className={cx(style.calendar_empty_day, style.calendar_cell)}
+          key={id()}
+        >
+          {""}
+        </td>
+      );
     }
     return blank;
   };
@@ -65,21 +87,25 @@ const Month = ({ date }) => {
 
   const getFieldCalendar = () => {
     return getCellsCalendar().map((d) => {
-      return <tr key={id()}>{d}</tr>;
+      return (
+        <tr className={style.calendar_row} key={id()}>
+          {d}
+        </tr>
+      );
     });
   };
 
   return (
-    <section>
-      <table>
-        <thead>
-          <tr key={id()}>
+    <div>
+      <table className={style.calendar}>
+        <thead className={style.calendar_head}>
+          <tr className={style.calendar_row} key={id()}>
             <DaysWeek />
           </tr>
         </thead>
-        <tbody>{getFieldCalendar()}</tbody>
+        <tbody className={style.calendar_body}>{getFieldCalendar()}</tbody>
       </table>
-    </section>
+    </div>
   );
 };
 

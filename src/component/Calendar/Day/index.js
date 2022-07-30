@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
+import style from "./Day.module.css";
 
 const Day = ({ date }) => {
   return (
-    <section>
-      <div>{format(date, "EEEE")}</div>
-      <div>{format(date, "d")}</div>
-    </section>
+    <div>
+      <div className={style.calendar_current_dayWeek}>
+        {format(date, "EEEE")}
+      </div>
+      <div className={style.calendar_current_day}>{format(date, "d")}</div>
+    </div>
   );
 };
 
