@@ -23,13 +23,17 @@ const FieldMonth = ({ date }) => {
   };
 
   const getAllDaysNeighborMonth = (month) => {
-    const daysPrevMonth = [];
+    const daysMonth = [];
 
-    for (let i = 1; i <= Number(format(month, "d")); i++) {
-      daysPrevMonth.push(i);
+    for (
+      let i = 1;
+      i <= Number(format(lastDayOfMonth(getNextMonth()), "d"));
+      i++
+    ) {
+      daysMonth.push(i);
     }
 
-    return daysPrevMonth;
+    return daysMonth;
   };
 
   const getFirstDayOfMonth = () => {
