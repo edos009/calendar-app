@@ -101,13 +101,19 @@ SetMonth.defaultProps = {
     "November",
     "December",
   ],
+  isShowSelectMonths: false,
   setMonthForCalendar: () => {},
+  showMonths: () => {},
+  showFieldMonth: () => {},
 };
 
 SetMonth.propTypes = {
   date: PropTypes.object.isRequired,
   allMonths: PropTypes.array.isRequired,
+  isShowSelectMonths: PropTypes.bool.isRequired,
   setMonthForCalendar: PropTypes.func.isRequired,
+  showMonths: PropTypes.func.isRequired,
+  showFieldMonth: PropTypes.func.isRequired,
 };
 
 export default SetMonth;

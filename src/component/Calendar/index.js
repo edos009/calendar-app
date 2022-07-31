@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Day from "./Day";
 import Month from "./Month";
 import style from "./Calendar.module.css";
+import { format } from "date-fns";
+import { currentDate } from "../../utils/date";
 
 const allMonths = [
   'January',
@@ -24,6 +26,7 @@ class Calendar extends Component {
     this.state = {
       date: new Date(),
       allMonths: allMonths,
+      currentYear: Number(format(currentDate, "yyyy")),
       isShowSelectMonths: false,
       isShowFieldMonth: true,
     };
@@ -34,29 +37,40 @@ class Calendar extends Component {
   };
 
   showMonths = () => {
-    const {isShowSelectMonths} = this.state;
+    const { isShowSelectMonths } = this.state;
     this.setState({ isShowSelectMonths: !isShowSelectMonths });
-  }
+  };
 
   showFieldMonth = () => {
     const { isShowFieldMonth } = this.state;
     this.setState({ isShowFieldMonth: !isShowFieldMonth });
-  }
+  };
+
+  changeYear = (newDate, value) => {
+    this.setState({ date: newDate, currentYear: Number(value) });
+  };
 
   render() {
-    const { date, allMonths, isShowSelectMonths, isShowFieldMonth } =
-      this.state;
+    const {
+      date,
+      allMonths,
+      currentYear,
+      isShowSelectMonths,
+      isShowFieldMonth,
+    } = this.state;
     return (
       <section className={style.calendar_app}>
         <Day />
         <Month
           date={date}
           allMonths={allMonths}
+          currentYear={currentYear}
           isShowSelectMonths={isShowSelectMonths}
           isShowFieldMonth={isShowFieldMonth}
           setMonthForCalendar={this.setMonthForCalendar}
           showMonths={this.showMonths}
           showFieldMonth={this.showFieldMonth}
+          changeYear={this.changeYear}
         />
       </section>
     );

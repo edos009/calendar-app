@@ -3,8 +3,8 @@ import { format, getDaysInMonth, startOfMonth } from "date-fns";
 import cx from "classnames";
 import { currentDate } from "../../../utils/date";
 import style from "./FieldMonth.module.css";
-import { getUniqId } from '../../../utils/index';
-import { PropTypes } from 'prop-types';
+import { getUniqId } from "../../../utils/index";
+import { PropTypes } from "prop-types";
 
 const FieldMonth = ({ date }) => {
   const firstDayOfMonth = () => {
@@ -21,7 +21,8 @@ const FieldMonth = ({ date }) => {
             style.calendar_day,
             style.calendar_cell,
             Number(format(currentDate, "d")) === i &&
-              Number(format(date, "M")) === Number(format(currentDate, "M"))
+              Number(format(date, "M")) === Number(format(currentDate, "M")) &&
+              Number(format(date, "Y")) === Number(format(currentDate, "Y"))
               ? style.calendar_current_day
               : ""
           )}
@@ -41,7 +42,7 @@ const FieldMonth = ({ date }) => {
       blank.push(
         <td
           className={cx(style.calendar_empty_day, style.calendar_cell)}
-          key={i + '-empty'}
+          key={i + "-empty"}
         >
           {""}
         </td>
@@ -63,7 +64,7 @@ const FieldMonth = ({ date }) => {
         if (i % 7 !== 0) {
           cells.push(row);
         } else {
-          rows.push({cells, key: getUniqId()});
+          rows.push({ cells, key: getUniqId() });
           cells = [];
           cells.push(row);
         }
