@@ -1,10 +1,17 @@
 import { setMonth, format } from "date-fns";
 import React from "react";
 import { getUniqId } from "../../../utils";
-import { PropTypes } from 'prop-types';
+import { PropTypes } from "prop-types";
 import style from "./SetMonth.module.css";
 
-const SetMonth = ({ date, allMonths, setMonthForCalendar }) => {
+const SetMonth = ({
+  date,
+  allMonths,
+  isShowSelectMonths,
+  setMonthForCalendar,
+  showMonths,
+  showFieldMonth,
+}) => {
   const month = () => {
     return format(date, "LLLL");
   };
@@ -12,6 +19,13 @@ const SetMonth = ({ date, allMonths, setMonthForCalendar }) => {
   const handlerSetMonth = (i) => {
     const newDate = setMonth(date, i);
     setMonthForCalendar(newDate);
+    showMonths();
+    showFieldMonth();
+  };
+
+  const handlerShow = () => {
+    showMonths();
+    showFieldMonth();
   };
 
   const getListTdMonth = () => {
@@ -35,7 +49,7 @@ const SetMonth = ({ date, allMonths, setMonthForCalendar }) => {
         if (i % 3 !== 0) {
           cells.push(row);
         } else {
-          rows.push({cells, key: getUniqId()});
+          rows.push({ cells, key: getUniqId() });
           cells = [];
           cells.push(row);
         }
@@ -54,15 +68,19 @@ const SetMonth = ({ date, allMonths, setMonthForCalendar }) => {
 
   return (
     <div className={style.calendar_month}>
-      <div className={style.calendar_current_month}>{month()}</div>
-      <table>
-        <thead>
-          <tr>
-            <td colSpan="4">Select a Month</td>
-          </tr>
-        </thead>
-        <tbody>{getFieldMonth()}</tbody>
-      </table>
+      <div className={style.calendar_current_month} onClick={handlerShow}>
+        {month()}
+      </div>
+      {isShowSelectMonths && (
+        <table>
+          <thead>
+            <tr>
+              <td colSpan="4">Select a Month</td>
+            </tr>
+          </thead>
+          <tbody>{getFieldMonth()}</tbody>
+        </table>
+      )}
     </div>
   );
 };

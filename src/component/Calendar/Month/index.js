@@ -21,18 +21,31 @@ const DaysWeek = () => {
   );
 };
 
-const Month = ({ date, allMonths, setMonthForCalendar }) => {
+const Month = ({
+  date,
+  allMonths,
+  isShowSelectMonths,
+  isShowFieldMonth,
+  setMonthForCalendar,
+  showMonths,
+  showFieldMonth,
+}) => {
   return (
     <div>
       <SetMonth
         date={date}
         allMonths={allMonths}
+        isShowSelectMonths={isShowSelectMonths}
         setMonthForCalendar={setMonthForCalendar}
+        showMonths={showMonths}
+        showFieldMonth={showFieldMonth}
       />
-      <table className={style.calendar}>
-        <DaysWeek />
-        <FieldMonth date={date} />
-      </table>
+      {isShowFieldMonth && (
+        <table className={style.calendar}>
+          <DaysWeek />
+          <FieldMonth date={date} />
+        </table>
+      )}
     </div>
   );
 };
