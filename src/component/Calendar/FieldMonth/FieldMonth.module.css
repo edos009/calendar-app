@@ -1,3 +1,7 @@
 .calendar_current_day{
   background-color: rgb(251, 122, 122);
 }
+
+.calendar_empty_day{
+  color: rgb(190, 189, 189);
+}

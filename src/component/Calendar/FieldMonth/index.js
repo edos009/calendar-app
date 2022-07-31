@@ -1,5 +1,5 @@
 import React from "react";
-import { format, getDaysInMonth, startOfMonth } from "date-fns";
+import { format, getDaysInMonth, startOfMonth, subMonths } from "date-fns";
 import cx from "classnames";
 import { currentDate } from "../../../utils/date";
 import style from "./FieldMonth.module.css";
@@ -7,8 +7,41 @@ import { getUniqId } from "../../../utils/index";
 import { PropTypes } from "prop-types";
 
 const FieldMonth = ({ date }) => {
+  const getPrevMonth = () => {
+    return subMonths(date, 1);
+  };
+
+  const getAllDaysPrevMonth = () => {
+    const daysPrevMonth = [];
+
+    for (let i = 1; i <= Number(format(getPrevMonth(), "d")); i++) {
+      daysPrevMonth.push(i);
+    }
+
+    return daysPrevMonth;
+  };
+
   const firstDayOfMonth = () => {
     return format(startOfMonth(date), "i") - 1;
+  };
+
+  const getLastDaysPrevMonthInEmptyCells = () => {
+    return getAllDaysPrevMonth().slice(-firstDayOfMonth());
+  };
+
+  const getEmptyCellsOfMonth = () => {
+    const blank = [];
+    for (let i = 0; i < getLastDaysPrevMonthInEmptyCells().length; i++) {
+      blank.push(
+        <td
+          className={cx(style.calendar_empty_day, style.calendar_cell)}
+          key={i + "-empty"}
+        >
+          {getLastDaysPrevMonthInEmptyCells()[i]}
+        </td>
+      );
+    }
+    return blank;
   };
 
   const getFullCountDaysOfMonth = () => {
@@ -34,21 +67,6 @@ const FieldMonth = ({ date }) => {
     }
 
     return daysOfMonth;
-  };
-
-  const getEmptyCellsOfMonth = () => {
-    const blank = [];
-    for (let i = 0; i < firstDayOfMonth(); i++) {
-      blank.push(
-        <td
-          className={cx(style.calendar_empty_day, style.calendar_cell)}
-          key={i + "-empty"}
-        >
-          {""}
-        </td>
-      );
-    }
-    return blank;
   };
 
   const totalSlots = [...getEmptyCellsOfMonth(), ...getFullCountDaysOfMonth()];
