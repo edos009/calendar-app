@@ -25,11 +25,7 @@ const FieldMonth = ({ date }) => {
   const getAllDaysNeighborMonth = (month) => {
     const daysMonth = [];
 
-    for (
-      let i = 1;
-      i <= Number(format(lastDayOfMonth(getNextMonth()), "d"));
-      i++
-    ) {
+    for (let i = 1; i <= Number(format(lastDayOfMonth(month), "d")); i++) {
       daysMonth.push(i);
     }
 
