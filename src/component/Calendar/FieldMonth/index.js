@@ -1,5 +1,12 @@
 import React from "react";
-import { format, getDaysInMonth, startOfMonth, subMonths } from "date-fns";
+import {
+  addMonths,
+  format,
+  getDaysInMonth,
+  lastDayOfMonth,
+  startOfMonth,
+  subMonths,
+} from "date-fns";
 import cx from "classnames";
 import { currentDate } from "../../../utils/date";
 import style from "./FieldMonth.module.css";
@@ -11,38 +18,58 @@ const FieldMonth = ({ date }) => {
     return subMonths(date, 1);
   };
 
-  const getAllDaysPrevMonth = () => {
+  const getNextMonth = () => {
+    return addMonths(date, 1);
+  };
+
+  const getAllDaysNeighborMonth = (month) => {
     const daysPrevMonth = [];
 
-    for (let i = 1; i <= Number(format(getPrevMonth(), "d")); i++) {
+    for (let i = 1; i <= Number(format(month, "d")); i++) {
       daysPrevMonth.push(i);
     }
 
     return daysPrevMonth;
   };
 
-  const firstDayOfMonth = () => {
+  const getFirstDayOfMonth = () => {
     return format(startOfMonth(date), "i") - 1;
   };
 
-  const getLastDaysPrevMonthInEmptyCells = () => {
-    return getAllDaysPrevMonth().slice(-firstDayOfMonth());
+  const getLastDayOfMonth = () => {
+    return 6 - (format(lastDayOfMonth(date), "i") - 1);
   };
 
-  const getEmptyCellsOfMonth = () => {
+  const getLastDaysPrevMonthInEmptyCells = () =>
+    getFirstDayOfMonth() !== 0
+      ? getAllDaysNeighborMonth(getPrevMonth()).slice(-getFirstDayOfMonth())
+      : [];
+
+  const getFirstDaysNextMonthInEmptyCells = () =>
+    getLastDayOfMonth() !== 0
+      ? getAllDaysNeighborMonth(getNextMonth()).slice(0, getLastDayOfMonth())
+      : [];
+
+  const getEmptyCellsOfMonth = (days) => {
     const blank = [];
-    for (let i = 0; i < getLastDaysPrevMonthInEmptyCells().length; i++) {
+    for (let i = 0; i < days.length; i++) {
       blank.push(
         <td
           className={cx(style.calendar_empty_day, style.calendar_cell)}
           key={i + "-empty"}
         >
-          {getLastDaysPrevMonthInEmptyCells()[i]}
+          {days[i]}
         </td>
       );
     }
     return blank;
   };
+
+  const getEmptyCellsPrevMonth = () =>
+    getEmptyCellsOfMonth(getLastDaysPrevMonthInEmptyCells());
+
+  const getEmptyCellsNextMonth = () =>
+    getEmptyCellsOfMonth(getFirstDaysNextMonthInEmptyCells());
 
   const getFullCountDaysOfMonth = () => {
     const daysOfMonth = [];
@@ -69,7 +96,11 @@ const FieldMonth = ({ date }) => {
     return daysOfMonth;
   };
 
-  const totalSlots = [...getEmptyCellsOfMonth(), ...getFullCountDaysOfMonth()];
+  const totalSlots = [
+    ...getEmptyCellsPrevMonth(),
+    ...getFullCountDaysOfMonth(),
+    ...getEmptyCellsNextMonth(),
+  ];
 
   const getCellsCalendar = () => {
     const rows = [];
