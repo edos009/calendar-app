@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FieldMonth from "../FieldMonth";
-import SetMonth from "../SetMonth";
-import SetYear from "../SetYear/index";
+import SetMonth, { setDefaultMonthProps, setMonthProps } from "../SetMonth";
+import SetYear, { setYearProps, setDefaultYearProps } from "../SetYear";
 import cx from "classnames";
 import { CONSTANTS } from "../../../constants";
 import style from "./Month.module.css";
@@ -54,40 +54,15 @@ const Month = ({
 };
 
 Month.defaultProps = {
-  date: new Date(),
-  allMonths: [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ],
-  currentYear: new Date().getFullYear(),
-  isShowSelectMonths: false,
+  ...setDefaultMonthProps,
+  ...setDefaultYearProps,
   isShowFieldMonth: true,
-  setMonthForCalendar: () => {},
-  showMonths: () => {},
-  showFieldMonth: () => {},
-  changeYear: () => {},
 };
 
 Month.propTypes = {
-  date: PropTypes.object.isRequired,
-  allMonths: PropTypes.array.isRequired,
-  currentYear: PropTypes.number.isRequired,
-  isShowSelectMonths: PropTypes.bool.isRequired,
+  ...setMonthProps,
+  ...setYearProps,
   isShowFieldMonth: PropTypes.bool.isRequired,
-  setMonthForCalendar: PropTypes.func.isRequired,
-  showMonths: PropTypes.func.isRequired,
-  showFieldMonth: PropTypes.func.isRequired,
-  changeYear: PropTypes.func.isRequired,
 };
 
 export default Month;

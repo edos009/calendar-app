@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Day from "./Day";
 import Month from "./Month";
-import style from "./Calendar.module.css";
 import { format } from "date-fns";
 import { currentDate } from "../../utils/date";
 import { CONSTANTS } from "../../constants";
+import style from "./Calendar.module.css";
 
 class Calendar extends Component {
   constructor(props) {

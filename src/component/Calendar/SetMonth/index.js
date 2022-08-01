@@ -85,7 +85,7 @@ const SetMonth = ({
   );
 };
 
-SetMonth.defaultProps = {
+export const setDefaultMonthProps = {
   date: new Date(),
   allMonths: [
     "January",
@@ -106,6 +106,7 @@ SetMonth.defaultProps = {
   showMonths: () => {},
   showFieldMonth: () => {},
 };
+SetMonth.defaultProps = setDefaultMonthProps;
 
 export const setMonthProps = {
   date: PropTypes.object.isRequired,

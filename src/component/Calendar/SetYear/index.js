@@ -2,7 +2,7 @@ import { format, setYear } from "date-fns";
 import React from "react";
 import { currentDate } from "../../../utils/date";
 import style from "./SetYear.module.css";
-import { PropTypes } from 'prop-types';
+import { PropTypes } from "prop-types";
 
 const SetYear = ({ date, currentYear, changeYear }) => {
   const getListYears = () => {
@@ -48,16 +48,18 @@ const SetYear = ({ date, currentYear, changeYear }) => {
   );
 };
 
-SetYear.defaultProps = {
+export const setDefaultYearProps = {
   date: new Date(),
   currentYear: new Date().getFullYear(),
   changeYear: () => {},
 };
+SetYear.defaultProps = setDefaultYearProps;
 
-SetYear.propTypes = {
+export const setYearProps = {
   date: PropTypes.object.isRequired,
   currentYear: PropTypes.number.isRequired,
   changeYear: PropTypes.func.isRequired,
 };
+SetYear.propTypes = setYearProps;
 
 export default SetYear;
