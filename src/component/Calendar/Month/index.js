@@ -31,6 +31,7 @@ const Month = ({
   showMonths,
   showFieldMonth,
   changeYear,
+  setMonthBtn,
 }) => {
   return (
     <div>
@@ -41,6 +42,7 @@ const Month = ({
         setMonthForCalendar={setMonthForCalendar}
         showMonths={showMonths}
         showFieldMonth={showFieldMonth}
+        setMonthBtn={setMonthBtn}
       />
       <SetYear date={date} currentYear={currentYear} changeYear={changeYear} />
       {isShowFieldMonth && (

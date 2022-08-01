@@ -1,8 +1,9 @@
-import { setMonth, format } from "date-fns";
+import { setMonth, format, addMonths, subMonths } from "date-fns";
 import React from "react";
 import { getUniqId } from "../../../utils";
 import { PropTypes } from "prop-types";
-import style from "./SetMonth.module.css";
+import style from "./SetMonth.module.scss";
+import cx from "classnames";
 
 const SetMonth = ({
   date,
@@ -11,6 +12,7 @@ const SetMonth = ({
   setMonthForCalendar,
   showMonths,
   showFieldMonth,
+  setMonthBtn,
 }) => {
   const month = () => {
     return format(date, "LLLL");
@@ -26,6 +28,11 @@ const SetMonth = ({
   const handlerShow = () => {
     showMonths();
     showFieldMonth();
+  };
+
+  const handlerSetMonthBtn = (method) => {
+    const newDate = method(date, 1);
+    setMonthBtn(newDate);
   };
 
   const getListTdMonth = () => {
@@ -68,8 +75,18 @@ const SetMonth = ({
 
   return (
     <div className={style.calendar_month}>
-      <div className={style.calendar_current_month} onClick={handlerShow}>
-        {month()}
+      <div>
+        <button
+          className={cx(style.btn, style.btn_prev)}
+          onClick={() => handlerSetMonthBtn(subMonths)}
+        ></button>
+        <div className={style.calendar_current_month} onClick={handlerShow}>
+          {month()}
+        </div>
+        <button
+          className={cx(style.btn, style.btn_next)}
+          onClick={() => handlerSetMonthBtn(addMonths)}
+        ></button>
       </div>
       {isShowSelectMonths && (
         <table>

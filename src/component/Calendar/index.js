@@ -36,6 +36,13 @@ class Calendar extends Component {
     this.setState({ date: newDate, currentYear: Number(value) });
   };
 
+  setMonthBtn = (newDate) => {
+    this.setState({
+      date: newDate,
+      currentYear: Number(format(newDate, "yyyy")),
+    });
+  };
+
   render() {
     const {
       date,
@@ -57,6 +64,7 @@ class Calendar extends Component {
           showMonths={this.showMonths}
           showFieldMonth={this.showFieldMonth}
           changeYear={this.changeYear}
+          setMonthBtn={this.setMonthBtn}
         />
       </section>
     );

@@ -1,0 +1,15 @@
+.btn{
+  width: 20px;
+  height: 20px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.btn_prev{
+  background-image: url('../../../images/arrow-prev.svg');
+}
+
+.btn_next{
+  background-image: url('../../../images/arrow-next.svg');
+}
