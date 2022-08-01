@@ -4,28 +4,14 @@ import Month from "./Month";
 import style from "./Calendar.module.css";
 import { format } from "date-fns";
 import { currentDate } from "../../utils/date";
-
-const allMonths = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import { CONSTANTS } from "../../constants";
 
 class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       date: new Date(),
-      allMonths: allMonths,
+      allMonths: CONSTANTS.ALL_MONTH,
       currentYear: Number(format(currentDate, "yyyy")),
       isShowSelectMonths: false,
       isShowFieldMonth: true,

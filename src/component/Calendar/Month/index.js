@@ -4,12 +4,11 @@ import FieldMonth from "../FieldMonth";
 import SetMonth from "../SetMonth";
 import SetYear from "../SetYear/index";
 import cx from "classnames";
+import { CONSTANTS } from "../../../constants";
 import style from "./Month.module.css";
 
-const titleDaysWeek = ["M", "T", "W", "T", "F", "S", "S"];
-
 const DaysWeek = () => {
-  const arrTitleDaysWeek = titleDaysWeek.map((day, i) => (
+  const arrTitleDaysWeek = CONSTANTS.TITLE_DAY_WEEK.map((day, i) => (
     <td className={cx(style.calendar_cell, style.calendar_dayWeek)} key={i}>
       {day}
     </td>
@@ -43,7 +42,7 @@ const Month = ({
         showMonths={showMonths}
         showFieldMonth={showFieldMonth}
       />
-      <SetYear date={date} currentYear={currentYear} changeYear={changeYear}/>
+      <SetYear date={date} currentYear={currentYear} changeYear={changeYear} />
       {isShowFieldMonth && (
         <table className={style.calendar}>
           <DaysWeek />

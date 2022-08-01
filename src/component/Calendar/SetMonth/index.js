@@ -107,7 +107,7 @@ SetMonth.defaultProps = {
   showFieldMonth: () => {},
 };
 
-SetMonth.propTypes = {
+export const setMonthProps = {
   date: PropTypes.object.isRequired,
   allMonths: PropTypes.array.isRequired,
   isShowSelectMonths: PropTypes.bool.isRequired,
@@ -115,5 +115,6 @@ SetMonth.propTypes = {
   showMonths: PropTypes.func.isRequired,
   showFieldMonth: PropTypes.func.isRequired,
 };
+SetMonth.propTypes = setMonthProps;
 
 export default SetMonth;
