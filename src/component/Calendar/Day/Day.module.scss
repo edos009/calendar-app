@@ -1,0 +1,21 @@
+@use "../../../common/style/colors" as *;
+
+.current__day{
+  padding: 11em 1em;
+
+  flex-basis: 50%;
+
+  color: $color-white;
+  background-color: $color-light-teal;
+
+  text-align: center;
+  text-transform: uppercase;
+  &__week{
+    margin-bottom: 2em;
+    font-size: 3.5rem;
+  }
+  &__number{
+    font-weight: 700;
+    font-size: 15rem;
+  }
+}

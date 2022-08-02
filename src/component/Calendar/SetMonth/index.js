@@ -38,7 +38,7 @@ const SetMonth = ({
   const getListTdMonth = () => {
     return allMonths.map((month, i) => {
       return (
-        <td key={month} onClick={() => handlerSetMonth(i)}>
+        <td className={style.month__table__td} key={month} onClick={() => handlerSetMonth(i)}>
           {month}
         </td>
       );
@@ -69,36 +69,35 @@ const SetMonth = ({
 
   const getFieldMonth = () => {
     return getCallsMonth().map((row) => {
-      return <tr key={row.key}>{row.cells}</tr>;
+      return (
+        <tr className={style.month__table__tr} key={row.key}>
+          {row.cells}
+        </tr>
+      );
     });
   };
 
   return (
-    <div className={style.calendar_month}>
-      <div>
+    <>
+      <div className={style.month}>
         <button
-          className={cx(style.btn, style.btn_prev)}
+          className={cx(style.month__btn, style.month__btn__prev)}
           onClick={() => handlerSetMonthBtn(subMonths)}
         ></button>
-        <div className={style.calendar_current_month} onClick={handlerShow}>
+        <div className={style.month__current} onClick={handlerShow}>
           {month()}
         </div>
         <button
-          className={cx(style.btn, style.btn_next)}
+          className={cx(style.month__btn, style.month__btn__next)}
           onClick={() => handlerSetMonthBtn(addMonths)}
         ></button>
       </div>
       {isShowSelectMonths && (
-        <table>
-          <thead>
-            <tr>
-              <td colSpan="4">Select a Month</td>
-            </tr>
-          </thead>
-          <tbody>{getFieldMonth()}</tbody>
+        <table className={style.month__table}>
+          <tbody className={style.month__table__body}>{getFieldMonth()}</tbody>
         </table>
       )}
-    </div>
+    </>
   );
 };
 
@@ -122,6 +121,7 @@ export const setDefaultMonthProps = {
   setMonthForCalendar: () => {},
   showMonths: () => {},
   showFieldMonth: () => {},
+  setMonthBtn: () => {},
 };
 SetMonth.defaultProps = setDefaultMonthProps;
 
@@ -132,6 +132,7 @@ export const setMonthProps = {
   setMonthForCalendar: PropTypes.func.isRequired,
   showMonths: PropTypes.func.isRequired,
   showFieldMonth: PropTypes.func.isRequired,
+  setMonthBtn: PropTypes.func.isRequired,
 };
 SetMonth.propTypes = setMonthProps;
 

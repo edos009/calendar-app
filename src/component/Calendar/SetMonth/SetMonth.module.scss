@@ -1,15 +1,55 @@
-.btn{
-  width: 20px;
-  height: 20px;
+@use "../../../common/style/colors" as *;
 
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+.month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 
-.btn_prev{
-  background-image: url('../../../images/arrow-prev.svg');
-}
+  margin-bottom: 0.8em;
+  &__btn {
+    width: 60px;
+    height: 20px;
 
-.btn_next{
-  background-image: url('../../../images/arrow-next.svg');
+    border: none;
+
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &__prev {
+      background-image: url("../../../../public/images/arrow-prev.svg");
+    }
+    &__next {
+      background-image: url("../../../../public/images/arrow-next.svg");
+    }
+  }
+  &__current {
+    max-width: 35%;
+    width: 100%;
+
+    color: $color-teal;
+
+    cursor: pointer;
+
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  &__table {
+    margin: 8em auto 5em;
+
+    text-align: center;
+    &__td {
+      padding: 0.8em 1.5em;
+
+      color: $color-dark-red;
+
+      cursor: pointer;
+
+      font-weight: 700;
+      font-size: 1.7rem;
+    }
+  }
 }

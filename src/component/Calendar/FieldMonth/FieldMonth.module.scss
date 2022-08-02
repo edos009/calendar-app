@@ -1,0 +1,19 @@
+@use "../../../common/style/colors" as *;
+@use "../../../common/style/template";
+
+.calendar__table {
+  &__td {
+    @extend %td;
+  }
+  &__empty{
+    color: $color-light-grey;
+  }
+  &__current__day{
+    border: 2px solid $color-dark-red;
+
+    color: $color-dark-red;
+
+    font-size: 2.5em;
+  }
+}
+

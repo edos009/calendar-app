@@ -5,18 +5,18 @@ import SetMonth, { setDefaultMonthProps, setMonthProps } from "../SetMonth";
 import SetYear, { setYearProps, setDefaultYearProps } from "../SetYear";
 import cx from "classnames";
 import { CONSTANTS } from "../../../constants";
-import style from "./Month.module.css";
+import style from "./Month.module.scss";
 
 const DaysWeek = () => {
   const arrTitleDaysWeek = CONSTANTS.TITLE_DAY_WEEK.map((day, i) => (
-    <td className={cx(style.calendar_cell, style.calendar_dayWeek)} key={i}>
+    <td className={cx(style.calendar__table__td, style.calendar__day__week)} key={i}>
       {day}
     </td>
   ));
 
   return (
-    <thead className={style.calendar_head}>
-      <tr className={style.calendar_row}>{arrTitleDaysWeek}</tr>
+    <thead className={style.calendar__table__head}>
+      <tr className={style.calendar__table__tr}>{arrTitleDaysWeek}</tr>
     </thead>
   );
 };
@@ -34,7 +34,7 @@ const Month = ({
   setMonthBtn,
 }) => {
   return (
-    <div>
+    <div className={style.month}>
       <SetMonth
         date={date}
         allMonths={allMonths}
@@ -46,7 +46,7 @@ const Month = ({
       />
       <SetYear date={date} currentYear={currentYear} changeYear={changeYear} />
       {isShowFieldMonth && (
-        <table className={style.calendar}>
+        <table className={style.calendar__table}>
           <DaysWeek />
           <FieldMonth date={date} />
         </table>

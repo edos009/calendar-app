@@ -1,0 +1,21 @@
+@use "../../../common/style/colors" as *;
+
+.year{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__current{
+    padding: 0.2em 0;
+    border: none;
+    margin-bottom: 0.5em;
+
+    color: $color-teal;
+
+    cursor: pointer;
+
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+  }
+}

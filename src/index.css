@@ -1,0 +1,23 @@
+*, *::after, *::before{
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+.container{
+  max-width: 1230px;
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+:root{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2em;
+
+  color: #000;
+}

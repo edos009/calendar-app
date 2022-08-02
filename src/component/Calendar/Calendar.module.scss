@@ -1,0 +1,18 @@
+@use "../../common/style/colors" as *;
+
+.calendar {
+  height: 100%;
+  padding: 5em 0;
+
+  background-color: $color-teal;
+  &__inner {
+    position: relative;
+    display: flex;
+  }
+  @media (max-width: 850px) {
+    padding: 5em 2em;
+    &__inner {
+      flex-direction: column;
+    }
+  }
+}

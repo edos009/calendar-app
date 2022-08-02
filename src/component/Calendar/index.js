@@ -4,7 +4,7 @@ import Month from "./Month";
 import { format } from "date-fns";
 import { currentDate } from "../../utils/date";
 import { CONSTANTS } from "../../constants";
-import style from "./Calendar.module.css";
+import style from "./Calendar.module.scss";
 
 class Calendar extends Component {
   constructor(props) {
@@ -52,20 +52,24 @@ class Calendar extends Component {
       isShowFieldMonth,
     } = this.state;
     return (
-      <section className={style.calendar_app}>
-        <Day />
-        <Month
-          date={date}
-          allMonths={allMonths}
-          currentYear={currentYear}
-          isShowSelectMonths={isShowSelectMonths}
-          isShowFieldMonth={isShowFieldMonth}
-          setMonthForCalendar={this.setMonthForCalendar}
-          showMonths={this.showMonths}
-          showFieldMonth={this.showFieldMonth}
-          changeYear={this.changeYear}
-          setMonthBtn={this.setMonthBtn}
-        />
+      <section className={style.calendar}>
+        <div className="container">
+          <div className={style.calendar__inner}>
+            <Day />
+            <Month
+              date={date}
+              allMonths={allMonths}
+              currentYear={currentYear}
+              isShowSelectMonths={isShowSelectMonths}
+              isShowFieldMonth={isShowFieldMonth}
+              setMonthForCalendar={this.setMonthForCalendar}
+              showMonths={this.showMonths}
+              showFieldMonth={this.showFieldMonth}
+              changeYear={this.changeYear}
+              setMonthBtn={this.setMonthBtn}
+            />
+          </div>
+        </div>
       </section>
     );
   }

@@ -9,7 +9,7 @@ import {
 } from "date-fns";
 import cx from "classnames";
 import { currentDate } from "../../../utils/date";
-import style from "./FieldMonth.module.css";
+import style from "./FieldMonth.module.scss";
 import { getUniqId } from "../../../utils/index";
 import { PropTypes } from "prop-types";
 
@@ -55,7 +55,7 @@ const FieldMonth = ({ date }) => {
     for (let i = 0; i < days.length; i++) {
       blank.push(
         <td
-          className={cx(style.calendar_empty_day, style.calendar_cell)}
+          className={cx(style.calendar__table__empty, style.calendar__table__td)}
           key={i + "-empty"}
         >
           {days[i]}
@@ -78,12 +78,11 @@ const FieldMonth = ({ date }) => {
       daysOfMonth.push(
         <td
           className={cx(
-            style.calendar_day,
-            style.calendar_cell,
+            style.calendar__table__td,
             Number(format(currentDate, "d")) === i &&
               Number(format(date, "M")) === Number(format(currentDate, "M")) &&
               Number(format(date, "Y")) === Number(format(currentDate, "Y"))
-              ? style.calendar_current_day
+              ? style.calendar__table__current__day
               : ""
           )}
           key={i}
@@ -129,14 +128,14 @@ const FieldMonth = ({ date }) => {
   const getFieldCalendar = () => {
     return getCellsCalendar().map((row) => {
       return (
-        <tr className={style.calendar_row} key={row.key}>
+        <tr className={style.calendar__table__tr} key={row.key}>
           {row.cells}
         </tr>
       );
     });
   };
 
-  return <tbody className={style.calendar_body}>{getFieldCalendar()}</tbody>;
+  return <tbody className={style.calendar__table__body}>{getFieldCalendar()}</tbody>;
 };
 
 FieldMonth.defaultProps = {

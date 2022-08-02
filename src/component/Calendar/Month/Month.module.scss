@@ -1,0 +1,28 @@
+@use "../../../common/style/colors" as *;
+@use "../../../common/style/template";
+
+.month {
+  padding: 4em 1em;
+
+  flex-basis: 50%;
+
+  color: $color-grey;
+  background-color: $color-white;
+}
+
+.calendar__table {
+  width: 90%;
+  margin: 0.5em auto;
+
+  text-align: center;
+
+  &__td {
+    @extend %td;
+  }
+}
+
+.calendar__day__week {
+  padding: 0.8em 0.6em;
+
+  color: $color-dark-red;
+}

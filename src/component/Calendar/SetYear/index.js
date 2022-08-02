@@ -1,7 +1,7 @@
 import { format, setYear } from "date-fns";
 import React from "react";
 import { currentDate } from "../../../utils/date";
-import style from "./SetYear.module.css";
+import style from "./SetYear.module.scss";
 import { PropTypes } from "prop-types";
 
 const SetYear = ({ date, currentYear, changeYear }) => {
@@ -34,9 +34,9 @@ const SetYear = ({ date, currentYear, changeYear }) => {
   };
 
   return (
-    <div>
+    <div className={style.year}>
       <input
-        className={style.calendar_year}
+        className={style.year__current}
         type="number"
         min={getMinYearOfList()}
         max={getMaxYearOfList()}
